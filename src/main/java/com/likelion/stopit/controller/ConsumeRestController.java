@@ -2,9 +2,9 @@ package com.likelion.stopit.controller;
 
 import com.likelion.stopit.domain.Consume;
 import com.likelion.stopit.domain.ConsumeRepository;
+import com.likelion.stopit.dto.ConsumeRequestDto;
 import lombok.RequiredArgsConstructor;
-import org.springframework.web.bind.annotation.GetMapping;
-import org.springframework.web.bind.annotation.RestController;
+import org.springframework.web.bind.annotation.*;
 
 import java.util.List;
 
@@ -17,5 +17,12 @@ public class ConsumeRestController {
     @GetMapping("/buy/list")
     public List<Consume> getConsumeAll(){
         return consumeRepository.findAll();
+    }
+
+    @PostMapping ("/buy")
+    public Consume createConsume(@RequestBody ConsumeRequestDto requestDto){
+        Consume consume=new Consume(requestDto);
+        consumeRepository.save(consume);
+        return consume;
     }
 }

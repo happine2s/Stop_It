@@ -1,5 +1,6 @@
 package com.likelion.stopit.domain;
 
+import com.likelion.stopit.dto.ConsumeRequestDto;
 import lombok.Getter;
 import lombok.NoArgsConstructor;
 
@@ -28,10 +29,29 @@ public class Consume extends Timestamped {
     @Column(nullable = false)
     private int cost;
 
-    @Column()
+    @Column(nullable = false)
     private boolean regret;
 
-    @Column()
+    @Column(nullable = false)
     private boolean onoffline;
 
+    // 소비 내역 등록 시 사용
+    public Consume(ConsumeRequestDto requestDto){
+        //this.userid=requestDto.getUserid();
+        this.name= requestDto.getName();
+        this.cost=requestDto.getCost();
+        //this.tagid=requestDto.getTagid();
+        this.regret= requestDto.getRegret();
+        this.onoffline= requestDto.getOnoffline();
+    }
+
+
+    public void update(ConsumeRequestDto requestDto) {
+        //this.userid=requestDto.getUserid();
+        this.name= requestDto.getName();
+        this.cost=requestDto.getCost();
+        //this.tagid=requestDto.getTagid();
+        //this.regret= requestDto.getRegret(); // 수정 불가 칼럼으로 정함
+        this.onoffline= requestDto.getOnoffline();
+    }
 }
