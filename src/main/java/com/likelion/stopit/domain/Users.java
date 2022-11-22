@@ -8,13 +8,13 @@ import javax.persistence.*;
 @Getter
 @NoArgsConstructor
 @Entity
-public class User {
+public class Users {
 
-    @GeneratedValue(strategy = GenerationType.AUTO)
+    @GeneratedValue(strategy = GenerationType.IDENTITY)
     @Id
     private Long id;
 
-    @Column(nullable = false)
+    @Column(nullable = false, unique = true)
     private String uid; //email, id, nickname 뭐로 할까
 
     @Column(nullable = false)
